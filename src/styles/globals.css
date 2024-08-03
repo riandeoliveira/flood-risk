@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    input[type="password"]::-ms-reveal {
+      filter: invert(100%);
+    }
+  }
+}
