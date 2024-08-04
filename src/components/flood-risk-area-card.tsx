@@ -27,37 +27,27 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
     if (sideBarStore.actionType !== "DELETE") sideBarStore.setActionType("DELETE");
   };
 
+  const cardInfo: string = `${props.nome} | ${props.cidade}`;
+
   return (
     <Paper className="rounded-xl">
       <div className="flex justify-between">
-        {/* <Tooltip title="Visualizar área de risco"> */}
-        <MenuItem onClick={handleFloodRiskAreaClick} className="w-full !pl-0 !py-0">
+        <MenuItem onClick={handleFloodRiskAreaClick} className="w-full !p-0 !py-0">
           <div
             style={{ backgroundColor: riskLevelColor }}
             className="h-full flex items-center p-2 rounded-l-[4px] mr-4"
           >
             <Icon.WarningAmber className="text-white" />
           </div>
-          <span>
-            {props.nome} | {props.cidade}
-          </span>
+          <span className="truncate">{cardInfo}</span>
         </MenuItem>
-        {/* </Tooltip> */}
-        <div className="flex gap-3 p-2">
-          {/* <Tooltip title="Atualizar área de risco"> */}
+        <div className="flex gap-3 p-2 s-600px:hidden">
           <IconButton size="small" onClick={() => {}} className="!bg-blue-500">
             <Icon.Edit fontSize="small" className="text-white" />
           </IconButton>
-          {/* </Tooltip> */}
-          {/* <Tooltip title="Remover área de risco"> */}
-          <IconButton size="small" onClick={() => {}} className="!bg-red-500">
-            <Icon.Delete
-              onClick={handleFloodRiskAreaDelete}
-              fontSize="small"
-              className="text-white"
-            />
+          <IconButton size="small" onClick={handleFloodRiskAreaDelete} className="!bg-red-500">
+            <Icon.Delete fontSize="small" className="text-white" />
           </IconButton>
-          {/* </Tooltip> */}
         </div>
       </div>
     </Paper>

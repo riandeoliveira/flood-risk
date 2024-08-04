@@ -58,10 +58,14 @@ export const MapArea = observer((): ReactElement => {
               <MapPin {...area} key={area.id} />
             ))}
           </GoogleMap>
-          <Tooltip title={!sideBarStore.isOpen && "Abrir menu de opções"} placement="top-end">
+          <Tooltip
+            title={!sideBarStore.isOpen && "Abrir menu de opções"}
+            placement="top-end"
+            className="s-1440px:hidden"
+          >
             <IconButton
               onClick={() => sideBarStore.toggle()}
-              className="!absolute w-12 h-12 rounded-full translate-y-[-80px] translate-x-2 !bg-[#170C36]"
+              className="!absolute w-12 h-12 rounded-full translate-y-[-80px] translate-x-2 !bg-[#170C36] s-1440px:!hidden"
             >
               {sideBarStore.isOpen ? (
                 <Icon.KeyboardDoubleArrowLeft className="text-white" />

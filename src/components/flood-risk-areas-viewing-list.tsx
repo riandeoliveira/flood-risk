@@ -17,11 +17,15 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
     FindAllFloodRiskAreasResponse[]
   >([]);
 
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const searchTerm = event.target.value.toLowerCase();
-    const filteredList = allFloodRiskAreas.filter((area) =>
-      area.nome.toLowerCase().includes(searchTerm),
+
+    const filteredList = allFloodRiskAreas.filter(
+      (area) =>
+        area.nome.toLowerCase().includes(searchTerm) ||
+        area.cidade.toLowerCase().includes(searchTerm),
     );
+
     setFilteredFloodRiskAreas(filteredList);
   };
 
@@ -46,7 +50,7 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
     <div className="animate-fade-in flex flex-col gap-12">
       <div className="flex flex-col gap-8">
         <div className="flex justify-between">
-          <h2 className="text-2xl text-center font-semibold">Áreas de Risco de Alagamentos</h2>
+          <h2 className="text-2xl font-semibold">Áreas de Risco de Alagamentos</h2>
           <Tooltip title="Adicionar nova área de risco">
             <IconButton
               onClick={() => sideBarStore.setActionType("CREATE")}
@@ -58,8 +62,8 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
         </div>
         <div>
           <TextField
-            label="Filtrar por nome"
-            placeholder="Pesquise uma área pelo nome"
+            label="Pesquisar uma área"
+            placeholder="Pesquise uma área pelo nome ou cidade"
             size="small"
             onChange={handleSearchChange}
             className="w-full"

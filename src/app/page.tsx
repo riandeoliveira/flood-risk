@@ -8,7 +8,7 @@ const HomePage = (): ReactElement => {
   return (
     <div className="h-screen flex flex-col">
       <HeaderArea />
-      <main className="flex h-full">
+      <main className="flex h-full s-1440px:flex-col">
         <SideBar />
         <MapArea />
       </main>

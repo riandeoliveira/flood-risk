@@ -4,7 +4,7 @@ import type { ReactElement } from "react";
 export const FooterArea = (): ReactElement => {
   return (
     <footer className="bg-[#170C36] p-2">
-      <p className="text-white text-center">
+      <p className="text-white text-center s-600px:text-sm">
         Desenvolvido com 💙 por{" "}
         <Link
           href="https://github.com/riandeoliveira"

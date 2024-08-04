@@ -17,6 +17,12 @@ export const FloodRiskAreaVisualization = observer((): ReactElement => {
 
   const risk = floodRiskLevels.find((risk) => risk.value === floodRiskArea.nivelRisco);
 
+  const handleFloodRiskAreaDelete = (): void => {
+    floodRiskAreaStore.setCurrentId(floodRiskAreaStore.currentId);
+
+    if (sideBarStore.actionType !== "DELETE") sideBarStore.setActionType("DELETE");
+  };
+
   const handleFetchFloodRiskArea = useCallback(async () => {
     const { data } = await findOneFloodRiskArea(floodRiskAreaStore.currentId);
 
@@ -28,25 +34,39 @@ export const FloodRiskAreaVisualization = observer((): ReactElement => {
   }, [handleFetchFloodRiskArea]);
 
   return (
-    <div className="animate-fade-in flex flex-col gap-12">
-      <div className="flex justify-between">
+    <div className="animate-fade-in flex flex-col gap-8">
+      <div className="flex justify-between s-600px:flex-col-reverse s-600px:gap-2">
         <h2 className="text-2xl text-center font-semibold">{floodRiskArea.nome}</h2>
-        <Tooltip title="Voltar">
-          <IconButton
-            onClick={() => sideBarStore.setActionType("READ_ALL")}
-            className="w-8 h-8 rounded-full !bg-[#170C36]"
-          >
-            <Icon.ArrowBack className="text-white" />
-          </IconButton>
-        </Tooltip>
+        <div className="flex gap-2 s-600px:justify-between">
+          <Tooltip title="Voltar">
+            <IconButton
+              onClick={() => sideBarStore.setActionType("READ_ALL")}
+              className="w-8 h-8 rounded-full !bg-[#170C36]"
+            >
+              <Icon.ArrowBack className="text-white" />
+            </IconButton>
+          </Tooltip>
+          <div className="flex gap-2">
+            <Tooltip title="Atualizar área de risco">
+              <IconButton size="small" onClick={() => {}} className="!bg-blue-500">
+                <Icon.Edit fontSize="small" className="text-white" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Remover área de risco">
+              <IconButton size="small" onClick={handleFloodRiskAreaDelete} className="!bg-red-500">
+                <Icon.Delete fontSize="small" className="text-white" />
+              </IconButton>
+            </Tooltip>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col gap-8">
         <div>
-          <h3 className="font-semibold text-xl mb-2">Descrição</h3>
+          <h3 className="font-semibold text-xl mb-2 s-600px:text-base">Descrição</h3>
           <p className="text-justify">{floodRiskArea.descricao}</p>
         </div>
         <div>
-          <h3 className="font-semibold text-xl mb-2">Localização</h3>
+          <h3 className="font-semibold text-xl mb-2 s-600px:text-base">Localização</h3>
           <ul>
             <li>
               <strong>Estado:</strong> <span>{floodRiskArea.estado}</span>
@@ -63,7 +83,7 @@ export const FloodRiskAreaVisualization = observer((): ReactElement => {
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold text-xl mb-2">Nível de Risco</h3>
+          <h3 className="font-semibold text-xl mb-2 s-600px:text-base">Nível de Risco</h3>
           <strong style={{ color: risk?.color }} className="text-xl">
             {risk?.label}
           </strong>

@@ -12,7 +12,6 @@ export const SideBar = observer((): ReactElement => {
   const sectionStyles = {
     flex: sideBarStore.isOpen ? 0.4 : 0,
     padding: sideBarStore.isOpen ? "16px" : 0,
-    height: "88vh",
   };
 
   const sectionContent = {
@@ -26,7 +25,7 @@ export const SideBar = observer((): ReactElement => {
   return (
     <section
       style={sectionStyles}
-      className="transition-all border-r-2 border-[#170C36] border-solid overflow-y-auto overflow-x-hidden"
+      className="transition-all overflow-y-auto overflow-x-hidden h-[88vh] s-1440px:min-h-[40vh] s-1440px:h-full"
     >
       {sideBarStore.isOpen && sectionContent[sideBarStore.actionType]}
     </section>
