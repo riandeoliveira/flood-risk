@@ -3,6 +3,8 @@
 import { Icon } from "@/assets/icons";
 import type { FindAllFloodRiskAreasResponse } from "@/features/find-all-flood-risk-areas";
 import { findAllFloodRiskAreas } from "@/features/find-all-flood-risk-areas";
+import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
+import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, TextField, Tooltip } from "@mui/material";
 import { observer } from "mobx-react-lite";
@@ -15,6 +17,14 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
   const [filteredFloodRiskAreas, setFilteredFloodRiskAreas] = useState<
     FindAllFloodRiskAreasResponse[]
   >([]);
+
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const searchTerm = event.target.value.toLowerCase();
+    const filteredList = allFloodRiskAreas.filter((area) =>
+      area.nome.toLowerCase().includes(searchTerm),
+    );
+    setFilteredFloodRiskAreas(filteredList);
+  };
 
   const handleFetchAllFloodRiskAreas = useCallback(async () => {
     const { data } = await findAllFloodRiskAreas();
@@ -29,13 +39,9 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
     handleFetchAllFloodRiskAreas();
   }, [handleFetchAllFloodRiskAreas]);
 
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const searchTerm = event.target.value.toLowerCase();
-    const filteredList = allFloodRiskAreas.filter((area) =>
-      area.nome.toLowerCase().includes(searchTerm),
-    );
-    setFilteredFloodRiskAreas(filteredList);
-  };
+  useEffect(() => {
+    floodRiskAreaStore.setCurrent({} as FindOneFloodRiskAreaResponse);
+  }, []);
 
   return (
     <div className="animate-fade-in flex flex-col gap-12">
