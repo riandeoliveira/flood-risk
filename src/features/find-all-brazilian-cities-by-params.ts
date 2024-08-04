@@ -3,8 +3,8 @@ import type { ApiRequestReturnType } from "@/types/api";
 import type { AxiosResponse } from "axios";
 
 export type FindAllBrazilianCitiesByParamsResponse = {
-  nome: string
-  codigo_ibge: string
+  nome: string;
+  codigo_ibge: string;
 };
 
 type ReturnType = ApiRequestReturnType<FindAllBrazilianCitiesByParamsResponse[]>;
