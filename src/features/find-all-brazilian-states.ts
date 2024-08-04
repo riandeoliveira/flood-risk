@@ -1,4 +1,4 @@
-import { brasilApi } from "@/apis/ibge-govbr-api";
+import { brasilApi } from "@/apis/brasil-api";
 import type { ApiRequestReturnType } from "@/types/api";
 import type { AxiosResponse } from "axios";
 
