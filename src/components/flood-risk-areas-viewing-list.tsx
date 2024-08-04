@@ -47,7 +47,7 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
     <div className="animate-fade-in flex flex-col gap-12">
       <div className="flex flex-col gap-8">
         <div className="flex justify-between">
-          <h2 className="text-2xl text-center font-semibold">Áreas de Risco de Enchentes</h2>
+          <h2 className="text-2xl text-center font-semibold">Áreas de Risco de Alagamentos</h2>
           <Tooltip title="Adicionar nova área de risco">
             <IconButton
               onClick={() => sideBarStore.setActionType("CREATE")}
