@@ -3,7 +3,7 @@ import { makeAutoObservable } from "mobx";
 type ActionType = "CREATE" | "READ_ALL" | "READ_ONE" | "UPDATE";
 
 class SideBarStore {
-  public actionType: ActionType = "CREATE";
+  public actionType: ActionType = "READ_ALL";
   public isOpen: boolean = true;
 
   public constructor() {

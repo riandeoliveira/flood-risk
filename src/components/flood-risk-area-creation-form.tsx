@@ -14,7 +14,6 @@ import { useCallback, useEffect, useState, type ReactElement } from "react";
 import { Button } from "./abstractions/button";
 import { Form } from "./abstractions/form";
 import { Input } from "./abstractions/input";
-import { NumericInput } from "./abstractions/numeric-input";
 import { Select } from "./abstractions/select";
 
 export const FloodRiskAreaCreationForm = observer((): ReactElement => {
@@ -37,6 +36,8 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
       descricao: "",
       estado: "",
       cidade: "",
+      latitude: "",
+      longitude: "",
       nivelRisco: null,
     },
     validationSchema: createFloodRiskAreaSchema,
@@ -110,10 +111,18 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
             instance={formik}
           />
         )}
-        <NumericInput
+        <Input
+          type="number"
           name="latitude"
           label="Latitude:*"
           placeholder="Latitude da área de risco"
+          instance={formik}
+        />
+        <Input
+          type="number"
+          name="longitude"
+          label="Longitude:*"
+          placeholder="Longitude da área de risco"
           instance={formik}
         />
         <Select
@@ -128,7 +137,9 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
           }}
           instance={formik}
         />
-        <Button type="submit">Enviar</Button>
+        <Button type="submit" className="!mt-4">
+          Enviar
+        </Button>
       </Form>
     </div>
   );

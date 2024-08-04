@@ -1,0 +1,67 @@
+[
+  {
+    "id": 2,
+    "nome": "Ilha das Flores",
+    "descricao": "Localizada próxima ao delta do Jacuí, essa região enfrenta riscos frequentes de inundação, especialmente durante chuvas intensas e períodos de cheia dos rios.",
+    "estado": "Rio Grande do Sul",
+    "cidade": "Porto Alegre",
+    "latitude": "-29.98754116965509",
+    "longitude": "-51.258601061711346",
+    "nivelRisco": 5,
+    "historicoDados": [
+      "https://www.brasildefators.com.br/2023/11/22/moradores-das-ilhas-de-porto-alegre-sofrem-com-mais-uma-enchente-do-guaiba"
+    ]
+  },
+  {
+    "id": 3,
+    "nome": "Centro Histórico",
+    "descricao": "A proximidade com o Guaíba e a baixa altitude tornam o Centro vulnerável a alagamentos, especialmente em eventos de chuva intensa.",
+    "estado": "Rio Grande do Sul",
+    "cidade": "Porto Alegre",
+    "latitude": "-30.027684",
+    "longitude": "-51.228781",
+    "nivelRisco": 5,
+    "historicoDados": [
+      "https://noticias.uol.com.br/cotidiano/ultimas-noticias/2024/05/16/imagens-mostram-centro-historico-de-porto-alegre-inundado-apos-chuvas-veja.htm"
+    ]
+  },
+  {
+    "id": 4,
+    "nome": "Cristal",
+    "descricao": "Localizado perto do Guaíba, o bairro Cristal é suscetível a inundações durante períodos de chuva forte e elevação do nível da água.",
+    "estado": "Rio Grande do Sul",
+    "cidade": "Porto Alegre",
+    "latitude": "-30.082020",
+    "longitude": "-51.241630",
+    "nivelRisco": 4,
+    "historicoDados": [
+      "https://gauchazh.clicrbs.com.br/geral/noticia/2024/05/com-casas-alagadas-moradores-do-bairro-cristal-sao-resgatados-por-voluntarios-em-porto-alegre-clvtqnnj7001k011w47y56wuj.html"
+    ]
+  },
+  {
+    "id": 5,
+    "nome": "Navegantes",
+    "descricao": "Este bairro é conhecido por enfrentar enchentes, principalmente devido ao transbordamento de córregos locais e problemas de drenagem.",
+    "estado": "Rio Grande do Sul",
+    "cidade": "Porto Alegre",
+    "latitude": "-29.988678",
+    "longitude": "-51.192138",
+    "nivelRisco": 4,
+    "historicoDados": [
+      "https://gauchazh.clicrbs.com.br/porto-alegre/noticia/2024/05/moradores-do-bairro-navegantes-sao-obrigados-a-adiar-limpeza-apos-novos-alagamentos-em-porto-alegre-clwtpr0gj002j0146f09scke1.html"
+    ]
+  },
+  {
+    "id": 6,
+    "nome": "Rubem Berta",
+    "descricao": "Com áreas baixas e infraestrutura de drenagem deficiente, o bairro Rubem Berta é frequentemente afetado por alagamentos.",
+    "estado": "Rio Grande do Sul",
+    "cidade": "Porto Alegre",
+    "latitude": "-29.996948",
+    "longitude": "-51.157938",
+    "nivelRisco": 3,
+    "historicoDados": [
+      "https://gauchazh.clicrbs.com.br/porto-alegre/noticia/2020/06/agua-invade-apartamentos-de-condominio-no-bairro-rubem-berta-ckc2hm89k0029013ioag5lg42.html"
+    ]
+  }
+]

@@ -6,14 +6,14 @@ import type { ReactElement } from "react";
 
 const HomePage = (): ReactElement => {
   return (
-    <>
+    <div className="h-screen flex flex-col">
       <HeaderArea />
-      <main className="flex">
+      <main className="flex h-full">
         <SideBar />
         <MapArea />
       </main>
       <FooterArea />
-    </>
+    </div>
   );
 };
 
