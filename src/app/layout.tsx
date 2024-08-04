@@ -1,5 +1,3 @@
-// TODO: update metadata
-
 import "@/styles/globals.css";
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material";
@@ -18,13 +16,10 @@ type RootLayoutProps = {
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  authors: {
-    name: "John Doe",
-    url: "https://www.example.com/",
-  },
-  description: "Lorem Ipsum...",
-  keywords: ["javascript", "markdown", "nextjs", "nodejs", "react", "tailwindcss", "typescript"],
-  title: "My Project",
+  title: "FloodRisk",
+  description:
+    "Aplicação pública destinada a identificar e alertar sobre potenciais áreas de risco de alagamentos por todo o território brasileiro.",
+  keywords: ["brazil", "hackathon", "javascript", "nextjs", "react", "tailwindcss", "typescript"],
 };
 
 const RootLayout = ({ children }: RootLayoutProps): ReactElement => {

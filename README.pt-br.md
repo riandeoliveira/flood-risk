@@ -6,12 +6,12 @@
 [![pt](https://img.shields.io/badge/lang-pt_br-blue.svg)](https://github.com/johndoe/my-project/blob/main/README.pt-br.md)
 
 <div align="center">
-  <h1>🚀 My Project 🚀</h1>
+  <h1>🚀 FloodRisk 🚀</h1>
 </div>
 
 ## 📚 Sobre
 
-Lorem Ipsum...
+Aplicação pública destinada a identificar e alertar sobre potenciais áreas de risco de alagamentos por todo o território brasileiro.
 
 ## 💻 Como acessar
 

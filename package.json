@@ -1,13 +1,19 @@
 {
-  "name": "my-project",
-  "description": "Lorem Ipsum...",
-  "version": "0.1.0",
+  "name": "flood-risk",
+  "description": "Aplicação pública destinada a identificar e alertar sobre potenciais áreas de risco de alagamentos por todo o território brasileiro.",
+  "version": "1.0.0",
   "license": "MIT",
   "private": true,
-  "author": {
-    "name": "John Doe",
-    "email": "johndoe2000@mail.com"
-  },
+  "contributors": [
+    {
+      "name": "Bruno Machado",
+      "email": "brunomdr46@gmail.com"
+    },
+    {
+      "name": "Rian Oliveira",
+      "email": "riandiasdeoliveira2001@gmail.com"
+    }
+  ],
   "scripts": {
     "build": "next build",
     "dev": "next dev",
@@ -54,8 +60,13 @@
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/johndoe/my-project.git"
-  }
+  "keywords": [
+    "brazil",
+    "hackathon",
+    "javascript",
+    "nextjs",
+    "react",
+    "tailwindcss",
+    "typescript"
+  ]
 }
