@@ -30,7 +30,7 @@ type ReturnType = ApiRequestReturnType<CreateFloodRiskAreaResponse>;
 export const createFloodRiskArea = withApiRequest(
   async (request: CreateFloodRiskAreaRequest): ReturnType => {
     const response: AxiosResponse<CreateFloodRiskAreaResponse> = await floodRiskApi.post(
-      "/areas-riscos-enchente",
+      "/areas-riscos-alagamento",
       request,
     );
 

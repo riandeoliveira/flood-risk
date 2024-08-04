@@ -19,7 +19,7 @@ type ReturnType = ApiRequestReturnType<FindOneFloodRiskAreaResponse>;
 
 export const findOneFloodRiskArea = withApiRequest(async (id: number): ReturnType => {
   const response: AxiosResponse<FindOneFloodRiskAreaResponse> = await floodRiskApi.get(
-    `/areas-riscos-enchente/${id}`,
+    `/areas-riscos-alagamento/${id}`,
   );
 
   return { data: response.data };
