@@ -9,15 +9,13 @@ import { useEffect, useState, type ReactElement } from "react";
 
 type MapPinProps = FindOneFloodRiskAreaResponse;
 
-// FIXME: A seleção de pin só funciona apenas no primeiro que for selecionado
-
 export const MapPin = observer((props: MapPinProps): ReactElement => {
   const [pinPosition, setPinPosition] = useState({ lat: 0, lng: 0 });
 
   const handlePinClick = (): void => {
     floodRiskAreaStore.setCurrent(props);
 
-    sideBarStore.setActionType("READ_ONE");
+    if (sideBarStore.actionType !== "READ_ONE") sideBarStore.setActionType("READ_ONE");
   };
 
   useEffect(() => {

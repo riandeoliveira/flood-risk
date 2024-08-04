@@ -22,8 +22,6 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
     handleFetchAllFloodRiskAreas();
   }, []);
 
-  console.log("CARREGOU", floodRiskAreas);
-
   return (
     <div className="animate-fade-in flex flex-col gap-12">
       <div className="flex justify-between">

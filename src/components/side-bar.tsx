@@ -24,7 +24,7 @@ export const SideBar = observer((): ReactElement => {
   return (
     <section
       style={sectionStyles}
-      className="transition-all border-r-2 border-[#170C36] border-solid overflow-auto"
+      className="transition-all border-r-2 border-[#170C36] border-solid overflow-y-auto overflow-x-hidden"
     >
       {sideBarStore.isOpen && sectionContent[sideBarStore.actionType]}
     </section>

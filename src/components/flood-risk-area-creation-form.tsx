@@ -1,6 +1,7 @@
 "use client";
 
 import { Icon } from "@/assets/icons";
+import { floodRiskLevels } from "@/constants/flood-risk-levels";
 import type { FindAllBrazilianCitiesByParamsResponse } from "@/features/find-all-brazilian-cities-by-params";
 import { findAllBrazilianCitiesByParams } from "@/features/find-all-brazilian-cities-by-params";
 import type { FindAllBrazilianStatesResponse } from "@/features/find-all-brazilian-states";
@@ -21,14 +22,6 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
   const [brazilianCities, setBrazilianCities] = useState<FindAllBrazilianCitiesByParamsResponse[]>(
     [],
   );
-
-  const riskLevels = [
-    { label: "5. Muito alto", value: 5 },
-    { label: "4. Alto", value: 4 },
-    { label: "3. Médio", value: 3 },
-    { label: "2. Baixo", value: 2 },
-    { label: "1. Muito baixo", value: 1 },
-  ];
 
   const formik = useFormik({
     initialValues: {
@@ -128,10 +121,10 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
         <Select
           name="nivelRisco"
           label="Nível de risco:*"
-          options={riskLevels.map((level) => level.label)}
+          options={floodRiskLevels.map((level) => level.label)}
           value={formik.values.nivelRisco}
           onSelect={(_, riskLevel) => {
-            const level = riskLevels.find((level) => level.label === riskLevel);
+            const level = floodRiskLevels.find((level) => level.label === riskLevel);
 
             formik.setFieldValue("nivelRisco", level?.value);
           }}

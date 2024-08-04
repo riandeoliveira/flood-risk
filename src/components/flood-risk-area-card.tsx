@@ -1,46 +1,50 @@
 import { Icon } from "@/assets/icons";
+import { floodRiskLevels } from "@/constants/flood-risk-levels";
 import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
-import { cn } from "@/utilities/cn";
-import { IconButton, MenuItem, Tooltip } from "@mui/material";
+import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
+import { sideBarStore } from "@/stores/side-bar-store";
+import { IconButton, MenuItem } from "@mui/material";
+import { observer } from "mobx-react-lite";
 import type { ReactElement } from "react";
 import { Paper } from "./abstractions/paper";
 
 type FloodRiskAreaCardProps = FindOneFloodRiskAreaResponse;
 
-type RiskLevelType = keyof typeof riskLevels;
+export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): ReactElement => {
+  const riskLevelColor = floodRiskLevels.find((risk) => risk.value === props.nivelRisco)?.color;
 
-const riskLevels = {
-  5: "border-red-400",
-  4: "border-orange-400",
-  3: "border-yellow-400",
-  2: "border-blue-400",
-  1: "border-green-400",
-};
+  const handleFloodAreaClick = (): void => {
+    floodRiskAreaStore.setCurrent(props);
 
-export const FloodRiskAreaCard = ({ nome, nivelRisco }: FloodRiskAreaCardProps): ReactElement => {
-  const riskLevel = nivelRisco as RiskLevelType;
+    if (sideBarStore.actionType !== "READ_ONE") sideBarStore.setActionType("READ_ONE");
+  };
 
   return (
-    <Paper className={cn("rounded-xl border-solid border-2", riskLevels[riskLevel])}>
+    <Paper style={{ borderColor: riskLevelColor }} className="rounded-xl border-solid border-2">
       <div className="flex justify-between">
-        <Tooltip title="Visualizar área de risco">
-          <MenuItem onClick={() => {}} className="w-full">
-            <span>{nome}</span>
-          </MenuItem>
-        </Tooltip>
-        <div className={cn("flex gap-4 border-l-2 py-2 px-4 border-solid", riskLevels[riskLevel])}>
-          <Tooltip title="Atualizar área de risco">
-            <IconButton size="small" onClick={() => {}} className="!bg-blue-400">
-              <Icon.Edit />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Remover área de risco">
-            <IconButton size="small" onClick={() => {}} className="!bg-red-400">
-              <Icon.Delete />
-            </IconButton>
-          </Tooltip>
+        {/* <Tooltip title="Visualizar área de risco"> */}
+        <MenuItem onClick={handleFloodAreaClick} className="w-full">
+          <span>
+            {props.nome} | {props.cidade}
+          </span>
+        </MenuItem>
+        {/* </Tooltip> */}
+        <div
+          style={{ borderColor: riskLevelColor }}
+          className="flex gap-4 border-l-2 py-2 px-4 border-solid"
+        >
+          {/* <Tooltip title="Atualizar área de risco"> */}
+          <IconButton size="small" onClick={() => {}} className="!bg-blue-400">
+            <Icon.Edit />
+          </IconButton>
+          {/* </Tooltip> */}
+          {/* <Tooltip title="Remover área de risco"> */}
+          <IconButton size="small" onClick={() => {}} className="!bg-red-400">
+            <Icon.Delete />
+          </IconButton>
+          {/* </Tooltip> */}
         </div>
       </div>
     </Paper>
   );
-};
+});

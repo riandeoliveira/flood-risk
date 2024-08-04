@@ -2,7 +2,7 @@ import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-ris
 import { makeAutoObservable } from "mobx";
 
 class FloodRiskAreaStore {
-  public current: FindOneFloodRiskAreaResponse | undefined;
+  public current: FindOneFloodRiskAreaResponse = {} as FindOneFloodRiskAreaResponse;
 
   public constructor() {
     makeAutoObservable(this);
