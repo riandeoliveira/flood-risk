@@ -26,7 +26,7 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
         <MenuItem onClick={handleFloodAreaClick} className="w-full !pl-0 !py-0">
           <div
             style={{ backgroundColor: riskLevelColor }}
-            className="h-full flex items-center p-2 rounded-l-[4px] mr-2"
+            className="h-full flex items-center p-2 rounded-l-[4px] mr-4"
           >
             <Icon.WarningAmber className="text-white" />
           </div>
