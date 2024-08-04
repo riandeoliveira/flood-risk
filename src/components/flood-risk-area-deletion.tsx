@@ -22,7 +22,11 @@ export const FloodRiskAreaDeletion = observer((): ReactElement => {
   const handleGoBack = (): void => sideBarStore.setActionType("READ_ALL");
 
   const handleFetchAllFloodRiskAreas = useCallback(async () => {
+    loadingStore.wait();
+
     const { data } = await findAllFloodRiskAreas();
+
+    loadingStore.stop();
 
     if (data) floodRiskAreaStore.setList(data);
   }, []);

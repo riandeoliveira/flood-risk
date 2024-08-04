@@ -4,6 +4,7 @@ import { Icon } from "@/assets/icons";
 import type { FindAllFloodRiskAreasResponse } from "@/features/find-all-flood-risk-areas";
 import { findAllFloodRiskAreas } from "@/features/find-all-flood-risk-areas";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
+import { loadingStore } from "@/stores/loading-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, TextField, Tooltip } from "@mui/material";
 import { observer } from "mobx-react-lite";
@@ -30,7 +31,11 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
   };
 
   const handleFetchAllFloodRiskAreas = useCallback(async () => {
+    loadingStore.wait();
+
     const { data } = await findAllFloodRiskAreas();
+
+    loadingStore.stop();
 
     if (data) {
       setAllFloodRiskAreas(data);

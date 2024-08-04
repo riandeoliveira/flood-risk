@@ -5,6 +5,7 @@ import { floodRiskLevels } from "@/constants/flood-risk-levels";
 import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
 import { findOneFloodRiskArea } from "@/features/find-one-flood-risk-area";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
+import { loadingStore } from "@/stores/loading-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, Tooltip } from "@mui/material";
 import { observer } from "mobx-react-lite";

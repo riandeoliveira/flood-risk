@@ -35,7 +35,11 @@ export const FloodRiskAreaUpdateForm = observer((): ReactElement => {
   );
 
   const handleFetchAllFloodRiskAreas = useCallback(async () => {
+    loadingStore.wait();
+
     const { data } = await findAllFloodRiskAreas();
+
+    loadingStore.stop();
 
     if (data) floodRiskAreaStore.setList(data);
   }, []);
@@ -80,13 +84,21 @@ export const FloodRiskAreaUpdateForm = observer((): ReactElement => {
   });
 
   const handleFetchBrazilianStates = useCallback(async () => {
+    loadingStore.wait();
+
     const { data } = await findAllBrazilianStates();
+
+    loadingStore.stop();
 
     if (data) setBrazilianStates(data);
   }, []);
 
   const handleFetchBrazilianCities = useCallback(async (uf: string) => {
+    loadingStore.wait();
+
     const { data } = await findAllBrazilianCitiesByParams(uf);
+
+    loadingStore.stop();
 
     if (data) setBrazilianCities(data);
   }, []);

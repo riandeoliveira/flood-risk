@@ -9,10 +9,15 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, type ReactElement } from "react";
 import { MapPin } from "./map-pin";
+import { loadingStore } from "@/stores/loading-store";
 
 export const MapArea = observer((): ReactElement => {
   const handleFetchAllFloodRiskAreas = useCallback(async () => {
+    loadingStore.wait();
+
     const { data } = await findAllFloodRiskAreas();
+
+    loadingStore.stop();
 
     if (data) floodRiskAreaStore.setList(data);
   }, []);
