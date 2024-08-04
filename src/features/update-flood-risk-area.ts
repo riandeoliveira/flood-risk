@@ -27,7 +27,7 @@ export type UpdateFloodRiskAreaResponse = {
 
 type ReturnType = ApiRequestReturnType<UpdateFloodRiskAreaResponse[]>;
 
-export const UpdateFloodRiskArea = withApiRequest(
+export const updateFloodRiskArea = withApiRequest(
   async (id: number, request: UpdateFloodRiskAreaRequest): ReturnType => {
     const response: AxiosResponse<UpdateFloodRiskAreaResponse[]> = await floodRiskApi.put(
       `/areas-riscos-enchente/${id}`,
