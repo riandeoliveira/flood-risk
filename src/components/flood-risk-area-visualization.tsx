@@ -23,6 +23,12 @@ export const FloodRiskAreaVisualization = observer((): ReactElement => {
     if (sideBarStore.actionType !== "DELETE") sideBarStore.setActionType("DELETE");
   };
 
+  const handleFloodRiskAreaUpdate = (): void => {
+    floodRiskAreaStore.setCurrentId(floodRiskAreaStore.currentId);
+
+    if (sideBarStore.actionType !== "UPDATE") sideBarStore.setActionType("UPDATE");
+  };
+
   const handleFetchFloodRiskArea = useCallback(async () => {
     const { data } = await findOneFloodRiskArea(floodRiskAreaStore.currentId);
 
@@ -48,7 +54,7 @@ export const FloodRiskAreaVisualization = observer((): ReactElement => {
           </Tooltip>
           <div className="flex gap-2">
             <Tooltip title="Atualizar área de risco">
-              <IconButton size="small" onClick={() => {}} className="!bg-blue-500">
+              <IconButton size="small" onClick={handleFloodRiskAreaUpdate} className="!bg-blue-500">
                 <Icon.Edit fontSize="small" className="text-white" />
               </IconButton>
             </Tooltip>
@@ -88,19 +94,6 @@ export const FloodRiskAreaVisualization = observer((): ReactElement => {
             {risk?.label}
           </strong>
         </div>
-        {/* <div>
-          <h3 className="font-semibold text-xl mb-2">Fontes</h3>
-          {historicoDados.map((dados, index) => (
-            <Link
-              href={dados}
-              target="_blank"
-              className="text-justify text-blue-400 underline hover:text-blue-600 transition-colors"
-              key={index}
-            >
-              {dados}
-            </Link>
-          ))}
-        </div> */}
       </div>
     </div>
   );

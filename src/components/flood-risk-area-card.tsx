@@ -28,6 +28,12 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
     if (sideBarStore.actionType !== "DELETE") sideBarStore.setActionType("DELETE");
   };
 
+  const handleFloodRiskAreaUpdate = (): void => {
+    floodRiskAreaStore.setCurrentId(props.id);
+
+    if (sideBarStore.actionType !== "UPDATE") sideBarStore.setActionType("UPDATE");
+  };
+
   const cardInfo: string = `${props.nome} | ${props.cidade}`;
 
   return (
@@ -43,7 +49,7 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
           <span className="truncate">{_.truncate(cardInfo, { length: 32 })}</span>
         </MenuItem>
         <div className="flex gap-3 p-2 s-600px:hidden">
-          <IconButton size="small" onClick={() => {}} className="!bg-blue-500">
+          <IconButton size="small" onClick={handleFloodRiskAreaUpdate} className="!bg-blue-500">
             <Icon.Edit fontSize="small" className="text-white" />
           </IconButton>
           <IconButton size="small" onClick={handleFloodRiskAreaDelete} className="!bg-red-500">
