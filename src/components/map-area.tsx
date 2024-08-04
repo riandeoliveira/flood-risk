@@ -26,15 +26,6 @@ export const MapArea = observer((): ReactElement => {
     handleFetchAllFloodRiskAreas();
   }, []);
 
-  // center={{
-  //   lat: floodRiskAreaStore.current
-  //     ? parseFloat(floodRiskAreaStore.current.latitude)
-  //     : -14.235,
-  //   lng: floodRiskAreaStore.current
-  //     ? parseFloat(floodRiskAreaStore.current.longitude)
-  //     : -51.9253,
-  // }}
-
   return (
     <section className="flex-1">
       {isLoaded ? (
