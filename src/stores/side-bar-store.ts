@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-type ActionType = "CREATE" | "READ_ALL" | "READ_ONE" | "UPDATE";
+type ActionType = "CREATE" | "DELETE" | "READ_ALL" | "READ_ONE" | "UPDATE";
 
 class SideBarStore {
   public actionType: ActionType = "READ_ALL";

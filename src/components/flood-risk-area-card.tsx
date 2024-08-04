@@ -1,3 +1,5 @@
+"use client";
+
 import { Icon } from "@/assets/icons";
 import { floodRiskLevels } from "@/constants/flood-risk-levels";
 import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
@@ -13,17 +15,23 @@ type FloodRiskAreaCardProps = FindOneFloodRiskAreaResponse;
 export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): ReactElement => {
   const riskLevelColor = floodRiskLevels.find((risk) => risk.value === props.nivelRisco)?.color;
 
-  const handleFloodAreaClick = (): void => {
+  const handleFloodRiskAreaClick = (): void => {
     floodRiskAreaStore.setCurrent(props);
 
     if (sideBarStore.actionType !== "READ_ONE") sideBarStore.setActionType("READ_ONE");
+  };
+
+  const handleFloodRiskAreaDelete = (): void => {
+    floodRiskAreaStore.setCurrent(props);
+
+    if (sideBarStore.actionType !== "DELETE") sideBarStore.setActionType("DELETE");
   };
 
   return (
     <Paper className="rounded-xl">
       <div className="flex justify-between">
         {/* <Tooltip title="Visualizar área de risco"> */}
-        <MenuItem onClick={handleFloodAreaClick} className="w-full !pl-0 !py-0">
+        <MenuItem onClick={handleFloodRiskAreaClick} className="w-full !pl-0 !py-0">
           <div
             style={{ backgroundColor: riskLevelColor }}
             className="h-full flex items-center p-2 rounded-l-[4px] mr-4"
@@ -43,7 +51,11 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
           {/* </Tooltip> */}
           {/* <Tooltip title="Remover área de risco"> */}
           <IconButton size="small" onClick={() => {}} className="!bg-red-500">
-            <Icon.Delete fontSize="small" className="text-white" />
+            <Icon.Delete
+              onClick={handleFloodRiskAreaDelete}
+              fontSize="small"
+              className="text-white"
+            />
           </IconButton>
           {/* </Tooltip> */}
         </div>
