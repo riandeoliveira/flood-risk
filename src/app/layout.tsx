@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactElement, ReactNode } from "react";
 import "react-modern-drawer/dist/index.css";
+import { Providers } from "./providers";
 
 type RootLayoutProps = {
   children: ReactNode;
@@ -33,6 +34,7 @@ const RootLayout = ({ children }: RootLayoutProps): ReactElement => {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             {children}
+            <Providers />
             <LoadingArea />
           </ThemeProvider>
         </AppRouterCacheProvider>
