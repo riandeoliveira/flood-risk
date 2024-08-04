@@ -1,15 +1,14 @@
-import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
 import { makeAutoObservable } from "mobx";
 
 class FloodRiskAreaStore {
-  public current: FindOneFloodRiskAreaResponse = {} as FindOneFloodRiskAreaResponse;
+  public currentId: number = 0;
 
   public constructor() {
     makeAutoObservable(this);
   }
 
-  public setCurrent(current: FindOneFloodRiskAreaResponse): void {
-    this.current = current;
+  public setCurrentId(currentId: number): void {
+    this.currentId = currentId;
   }
 }
 

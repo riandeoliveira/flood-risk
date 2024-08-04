@@ -13,9 +13,9 @@ export const MapPin = observer((props: MapPinProps): ReactElement => {
   const [pinPosition, setPinPosition] = useState({ lat: 0, lng: 0 });
 
   const handlePinClick = (): void => {
-    floodRiskAreaStore.setCurrent(props);
+    floodRiskAreaStore.setCurrentId(props.id);
 
-    if (sideBarStore.actionType !== "READ_ONE") sideBarStore.setActionType("READ_ONE");
+    sideBarStore.setActionType("READ_ONE");
   };
 
   useEffect(() => {

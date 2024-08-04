@@ -3,7 +3,6 @@
 import { Icon } from "@/assets/icons";
 import type { FindAllFloodRiskAreasResponse } from "@/features/find-all-flood-risk-areas";
 import { findAllFloodRiskAreas } from "@/features/find-all-flood-risk-areas";
-import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, TextField, Tooltip } from "@mui/material";
@@ -40,7 +39,7 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
   }, [handleFetchAllFloodRiskAreas]);
 
   useEffect(() => {
-    floodRiskAreaStore.setCurrent({} as FindOneFloodRiskAreaResponse);
+    floodRiskAreaStore.setCurrentId(0);
   }, []);
 
   return (

@@ -2,12 +2,12 @@
 
 import { Icon } from "@/assets/icons";
 import { floodRiskLevels } from "@/constants/flood-risk-levels";
-import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
+import { type FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, MenuItem } from "@mui/material";
 import { observer } from "mobx-react-lite";
-import type { ReactElement } from "react";
+import { type ReactElement } from "react";
 import { Paper } from "./abstractions/paper";
 
 type FloodRiskAreaCardProps = FindOneFloodRiskAreaResponse;
@@ -16,13 +16,13 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
   const riskLevelColor = floodRiskLevels.find((risk) => risk.value === props.nivelRisco)?.color;
 
   const handleFloodRiskAreaClick = (): void => {
-    floodRiskAreaStore.setCurrent(props);
+    floodRiskAreaStore.setCurrentId(props.id);
 
     if (sideBarStore.actionType !== "READ_ONE") sideBarStore.setActionType("READ_ONE");
   };
 
   const handleFloodRiskAreaDelete = (): void => {
-    floodRiskAreaStore.setCurrent(props);
+    floodRiskAreaStore.setCurrentId(props.id);
 
     if (sideBarStore.actionType !== "DELETE") sideBarStore.setActionType("DELETE");
   };
