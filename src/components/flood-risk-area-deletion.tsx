@@ -9,6 +9,7 @@ import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, Tooltip } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useState, type ReactElement } from "react";
+import { toast } from "react-toastify";
 import { Button } from "./abstractions/button";
 
 export const FloodRiskAreaDeletion = observer((): ReactElement => {
@@ -21,7 +22,11 @@ export const FloodRiskAreaDeletion = observer((): ReactElement => {
   };
 
   const handleDeleteFloodRiskArea = useCallback(async () => {
-    await deleteFloodRiskArea(floodRiskAreaStore.currentId);
+    const response = await deleteFloodRiskArea(floodRiskAreaStore.currentId);
+
+    if (response.status === 204) {
+      toast.success("Área de risco removida com sucesso!");
+    }
   }, []);
 
   const handleFetchFloodRiskArea = useCallback(async () => {

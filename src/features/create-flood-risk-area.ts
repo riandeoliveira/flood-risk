@@ -1,6 +1,4 @@
 import { floodRiskApi } from "@/apis/flood-risk-api";
-import type { ApiRequestReturnType } from "@/types/api";
-import { withApiRequest } from "@/utilities/with-api-request";
 import type { AxiosResponse } from "axios";
 
 export type CreateFloodRiskAreaRequest = {
@@ -25,15 +23,13 @@ export type CreateFloodRiskAreaResponse = {
   historicoDados: string[];
 };
 
-type ReturnType = ApiRequestReturnType<CreateFloodRiskAreaResponse>;
+type ReturnType = Promise<AxiosResponse<CreateFloodRiskAreaResponse>>;
 
-export const createFloodRiskArea = withApiRequest(
-  async (request: CreateFloodRiskAreaRequest): ReturnType => {
-    const response: AxiosResponse<CreateFloodRiskAreaResponse> = await floodRiskApi.post(
-      "/areas-riscos-alagamento",
-      request,
-    );
+export const createFloodRiskArea = async (request: CreateFloodRiskAreaRequest): ReturnType => {
+  const response: AxiosResponse<CreateFloodRiskAreaResponse> = await floodRiskApi.post(
+    "/areas-riscos-alagamento",
+    request,
+  );
 
-    return { data: response.data };
-  },
-);
+  return response;
+};

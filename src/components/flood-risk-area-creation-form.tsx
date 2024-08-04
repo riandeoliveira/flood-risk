@@ -14,6 +14,7 @@ import { IconButton, Tooltip } from "@mui/material";
 import { useFormik } from "formik";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useState, type ReactElement } from "react";
+import { toast } from "react-toastify";
 import { Button } from "./abstractions/button";
 import { Form } from "./abstractions/form";
 import { Input } from "./abstractions/input";
@@ -29,6 +30,8 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
     [],
   );
 
+  const handleGoBack = (): void => sideBarStore.setActionType("READ_ALL");
+
   const handleCreateFloodRiskArea = async (
     values: CreateFloodRiskAreaRequestForm,
   ): Promise<void> => {
@@ -37,11 +40,17 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
       nivelRisco: values.nivelRisco ?? 0,
     };
 
-    const { data } = await createFloodRiskArea(request);
+    const response = await createFloodRiskArea(request);
 
-    if (data) {
-      console.log("CRIADO");
-      console.log(data);
+    if (response.status === 201) {
+      // TODO: Adicionar loading na sidebar ou na pág durante a requisição
+
+      toast.success("Área de risco criado com sucesso!");
+
+      // TODO: Voltar uma tela
+      handleGoBack();
+
+      // TODO: Carregar o componente de mapa
     }
   };
 
@@ -80,10 +89,7 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
       <div className="flex justify-between">
         <h2 className="text-2xl text-center font-semibold">Nova Área de Risco</h2>
         <Tooltip title="Voltar">
-          <IconButton
-            onClick={() => sideBarStore.setActionType("READ_ALL")}
-            className="w-8 h-8 rounded-full !bg-[#170C36]"
-          >
+          <IconButton onClick={handleGoBack} className="w-8 h-8 rounded-full !bg-[#170C36]">
             <Icon.ArrowBack className="text-white" />
           </IconButton>
         </Tooltip>

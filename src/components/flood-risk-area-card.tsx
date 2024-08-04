@@ -6,6 +6,7 @@ import { type FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-ris
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, MenuItem } from "@mui/material";
+import _ from "lodash";
 import { observer } from "mobx-react-lite";
 import { type ReactElement } from "react";
 import { Paper } from "./abstractions/paper";
@@ -39,7 +40,7 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
           >
             <Icon.WarningAmber className="text-white" />
           </div>
-          <span className="truncate">{cardInfo}</span>
+          <span className="truncate">{_.truncate(cardInfo, { length: 32 })}</span>
         </MenuItem>
         <div className="flex gap-3 p-2 s-600px:hidden">
           <IconButton size="small" onClick={() => {}} className="!bg-blue-500">
