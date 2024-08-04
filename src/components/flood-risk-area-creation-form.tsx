@@ -2,6 +2,8 @@
 
 import { Icon } from "@/assets/icons";
 import { floodRiskLevels } from "@/constants/flood-risk-levels";
+import type { CreateFloodRiskAreaRequest } from "@/features/create-flood-risk-area";
+import { createFloodRiskArea } from "@/features/create-flood-risk-area";
 import type { FindAllBrazilianCitiesByParamsResponse } from "@/features/find-all-brazilian-cities-by-params";
 import { findAllBrazilianCitiesByParams } from "@/features/find-all-brazilian-cities-by-params";
 import type { FindAllBrazilianStatesResponse } from "@/features/find-all-brazilian-states";
@@ -17,11 +19,31 @@ import { Form } from "./abstractions/form";
 import { Input } from "./abstractions/input";
 import { Select } from "./abstractions/select";
 
+type CreateFloodRiskAreaRequestForm = Omit<CreateFloodRiskAreaRequest, "nivelRisco"> & {
+  nivelRisco: number | null;
+};
+
 export const FloodRiskAreaCreationForm = observer((): ReactElement => {
   const [brazilianStates, setBrazilianStates] = useState<FindAllBrazilianStatesResponse[]>([]);
   const [brazilianCities, setBrazilianCities] = useState<FindAllBrazilianCitiesByParamsResponse[]>(
     [],
   );
+
+  const handleCreateFloodRiskArea = async (
+    values: CreateFloodRiskAreaRequestForm,
+  ): Promise<void> => {
+    const request: CreateFloodRiskAreaRequest = {
+      ...values,
+      nivelRisco: values.nivelRisco ?? 0,
+    };
+
+    const { data } = await createFloodRiskArea(request);
+
+    if (data) {
+      console.log("CRIADO");
+      console.log(data);
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -34,9 +56,7 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
       nivelRisco: null,
     },
     validationSchema: createFloodRiskAreaSchema,
-    onSubmit: (values: any) => {
-      console.log(values);
-    },
+    onSubmit: handleCreateFloodRiskArea,
   });
 
   const handleFetchBrazilianStates = useCallback(async () => {
