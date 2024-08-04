@@ -78,46 +78,50 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
           rows={2}
           instance={formik}
         />
-        <Select
-          name="estado"
-          label="Estado:*"
-          options={brazilianStates.map((state) => state.nome)}
-          value={formik.values.estado}
-          onSelect={(_, stateName) => {
-            formik.setFieldValue("estado", stateName);
-
-            const state = brazilianStates.find((state) => state.nome === stateName);
-
-            handleFetchBrazilianCities(state?.sigla as string);
-          }}
-          instance={formik}
-        />
-        {formik.values.estado !== "" && (
+        <div className="flex gap-4">
           <Select
-            name="cidade"
-            label="Cidade:*"
-            options={brazilianCities.map((city) => city.nome)}
-            value={formik.values.cidade}
-            onSelect={(_, cityName) => {
-              formik.setFieldValue("cidade", cityName);
+            name="estado"
+            label="Estado:*"
+            options={brazilianStates.map((state) => state.nome)}
+            value={formik.values.estado}
+            onSelect={(_, stateName) => {
+              formik.setFieldValue("estado", stateName);
+
+              const state = brazilianStates.find((state) => state.nome === stateName);
+
+              handleFetchBrazilianCities(state?.sigla as string);
             }}
             instance={formik}
           />
-        )}
-        <Input
-          type="number"
-          name="latitude"
-          label="Latitude:*"
-          placeholder="Latitude da área de risco"
-          instance={formik}
-        />
-        <Input
-          type="number"
-          name="longitude"
-          label="Longitude:*"
-          placeholder="Longitude da área de risco"
-          instance={formik}
-        />
+          {formik.values.estado !== "" && (
+            <Select
+              name="cidade"
+              label="Cidade:*"
+              options={brazilianCities.map((city) => city.nome)}
+              value={formik.values.cidade}
+              onSelect={(_, cityName) => {
+                formik.setFieldValue("cidade", cityName);
+              }}
+              instance={formik}
+            />
+          )}
+        </div>
+        <div className="flex gap-4">
+          <Input
+            type="number"
+            name="latitude"
+            label="Latitude:*"
+            placeholder="Latitude da área de risco"
+            instance={formik}
+          />
+          <Input
+            type="number"
+            name="longitude"
+            label="Longitude:*"
+            placeholder="Longitude da área de risco"
+            instance={formik}
+          />
+        </div>
         <Select
           name="nivelRisco"
           label="Nível de risco:*"

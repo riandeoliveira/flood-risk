@@ -35,15 +35,15 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
           </span>
         </MenuItem>
         {/* </Tooltip> */}
-        <div className="flex gap-4 py-2 px-4">
+        <div className="flex gap-3 p-2">
           {/* <Tooltip title="Atualizar área de risco"> */}
-          <IconButton size="small" onClick={() => {}} className="!bg-blue-400">
-            <Icon.Edit />
+          <IconButton size="small" onClick={() => {}} className="!bg-blue-500">
+            <Icon.Edit fontSize="small" className="text-white" />
           </IconButton>
           {/* </Tooltip> */}
           {/* <Tooltip title="Remover área de risco"> */}
-          <IconButton size="small" onClick={() => {}} className="!bg-red-400">
-            <Icon.Delete />
+          <IconButton size="small" onClick={() => {}} className="!bg-red-500">
+            <Icon.Delete fontSize="small" className="text-white" />
           </IconButton>
           {/* </Tooltip> */}
         </div>

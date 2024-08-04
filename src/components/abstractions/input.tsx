@@ -15,6 +15,7 @@ export const Input = ({ className, name = "", instance, ...props }: InputProps):
   return (
     <TextField
       type="text"
+      size="small"
       name={name}
       value={instance?.values[name]}
       onChange={instance?.handleChange}
