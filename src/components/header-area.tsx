@@ -34,7 +34,7 @@ export const HeaderArea = observer((): ReactElement => {
           height={24}
           className="flex items-center gap-3 s-600px:w-10 s-600px:h-8 s-600px:gap-2"
         />
-        <h1 className="text-white text-xl font-semibold s-600px:text-base">Flood Risk</h1>
+        <h1 className="text-white text-xl font-semibold s-600px:text-base">FloodRisk</h1>
       </Link>
       <div className="flex gap-3 items-center s-600px:gap-2">
         <Image

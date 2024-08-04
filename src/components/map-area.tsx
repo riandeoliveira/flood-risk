@@ -1,22 +1,20 @@
 "use client";
 
 import { Icon } from "@/assets/icons";
-import type { FindAllFloodRiskAreasResponse } from "@/features/find-all-flood-risk-areas";
 import { findAllFloodRiskAreas } from "@/features/find-all-flood-risk-areas";
+import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, Tooltip } from "@mui/material";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { observer } from "mobx-react-lite";
-import { useCallback, useEffect, useState, type ReactElement } from "react";
+import { useCallback, useEffect, type ReactElement } from "react";
 import { MapPin } from "./map-pin";
 
 export const MapArea = observer((): ReactElement => {
-  const [floodRiskAreas, setFloodRiskAreas] = useState<FindAllFloodRiskAreasResponse[]>([]);
-
   const handleFetchAllFloodRiskAreas = useCallback(async () => {
     const { data } = await findAllFloodRiskAreas();
 
-    if (data) setFloodRiskAreas(data);
+    if (data) floodRiskAreaStore.setList(data);
   }, []);
 
   const { isLoaded } = useJsApiLoader({
@@ -54,7 +52,7 @@ export const MapArea = observer((): ReactElement => {
             }}
             mapContainerClassName="w-full h-full"
           >
-            {floodRiskAreas.map((area) => (
+            {floodRiskAreaStore.list.map((area) => (
               <MapPin {...area} key={area.id} />
             ))}
           </GoogleMap>

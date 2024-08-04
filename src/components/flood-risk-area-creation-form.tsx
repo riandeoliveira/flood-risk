@@ -8,7 +8,10 @@ import type { FindAllBrazilianCitiesByParamsResponse } from "@/features/find-all
 import { findAllBrazilianCitiesByParams } from "@/features/find-all-brazilian-cities-by-params";
 import type { FindAllBrazilianStatesResponse } from "@/features/find-all-brazilian-states";
 import { findAllBrazilianStates } from "@/features/find-all-brazilian-states";
+import { findAllFloodRiskAreas } from "@/features/find-all-flood-risk-areas";
 import { createFloodRiskAreaSchema } from "@/schemas/create-flood-risk-area-schema";
+import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
+import { loadingStore } from "@/stores/loading-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, Tooltip } from "@mui/material";
 import { useFormik } from "formik";
@@ -30,6 +33,12 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
     [],
   );
 
+  const handleFetchAllFloodRiskAreas = useCallback(async () => {
+    const { data } = await findAllFloodRiskAreas();
+
+    if (data) floodRiskAreaStore.setList(data);
+  }, []);
+
   const handleGoBack = (): void => sideBarStore.setActionType("READ_ALL");
 
   const handleCreateFloodRiskArea = async (
@@ -40,18 +49,18 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
       nivelRisco: values.nivelRisco ?? 0,
     };
 
+    loadingStore.wait();
+
     const response = await createFloodRiskArea(request);
 
+    loadingStore.stop();
+
     if (response.status === 201) {
-      // TODO: Adicionar loading na sidebar ou na pág durante a requisição
+      toast.success("Área de risco criada com sucesso!");
 
-      toast.success("Área de risco criado com sucesso!");
-
-      // TODO: Voltar uma tela
+      handleFetchAllFloodRiskAreas();
       handleGoBack();
-
-      // TODO: Carregar o componente de mapa
-    }
+    } else toast.error("Erro: Não foi possível criar uma área de risco!");
   };
 
   const formik = useFormik({

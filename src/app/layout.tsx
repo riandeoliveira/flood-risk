@@ -1,6 +1,5 @@
 // TODO: update metadata
 
-import { LoadingArea } from "@/components/common/loading-area";
 import "@/styles/globals.css";
 import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material";
@@ -36,7 +35,6 @@ const RootLayout = ({ children }: RootLayoutProps): ReactElement => {
           <ThemeProvider theme={theme}>
             {children}
             <Providers />
-            <LoadingArea />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

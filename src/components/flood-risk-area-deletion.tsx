@@ -2,9 +2,11 @@
 
 import { Icon } from "@/assets/icons";
 import { deleteFloodRiskArea } from "@/features/delete-flood-risk-area";
+import { findAllFloodRiskAreas } from "@/features/find-all-flood-risk-areas";
 import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
 import { findOneFloodRiskArea } from "@/features/find-one-flood-risk-area";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
+import { loadingStore } from "@/stores/loading-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, Tooltip } from "@mui/material";
 import { observer } from "mobx-react-lite";
@@ -17,17 +19,28 @@ export const FloodRiskAreaDeletion = observer((): ReactElement => {
     {} as FindOneFloodRiskAreaResponse,
   );
 
-  const handleGoBack = (): void => {
-    sideBarStore.setActionType("READ_ALL");
-  };
+  const handleGoBack = (): void => sideBarStore.setActionType("READ_ALL");
 
-  const handleDeleteFloodRiskArea = useCallback(async () => {
+  const handleFetchAllFloodRiskAreas = useCallback(async () => {
+    const { data } = await findAllFloodRiskAreas();
+
+    if (data) floodRiskAreaStore.setList(data);
+  }, []);
+
+  const handleDeleteFloodRiskArea = async () => {
+    loadingStore.wait();
+
     const response = await deleteFloodRiskArea(floodRiskAreaStore.currentId);
+
+    loadingStore.stop();
 
     if (response.status === 204) {
       toast.success("Área de risco removida com sucesso!");
-    }
-  }, []);
+
+      handleFetchAllFloodRiskAreas();
+      handleGoBack();
+    } else toast.error("Erro: Não foi possível remover esta área de risco!");
+  };
 
   const handleFetchFloodRiskArea = useCallback(async () => {
     const { data } = await findOneFloodRiskArea(floodRiskAreaStore.currentId);
