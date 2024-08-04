@@ -20,19 +20,22 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
   };
 
   return (
-    <Paper style={{ borderColor: riskLevelColor }} className="rounded-xl border-solid border-2">
+    <Paper className="rounded-xl">
       <div className="flex justify-between">
         {/* <Tooltip title="Visualizar área de risco"> */}
-        <MenuItem onClick={handleFloodAreaClick} className="w-full">
+        <MenuItem onClick={handleFloodAreaClick} className="w-full !pl-0 !py-0">
+          <div
+            style={{ backgroundColor: riskLevelColor }}
+            className="h-full flex items-center p-2 rounded-l-[4px] mr-2"
+          >
+            <Icon.WarningAmber className="text-white" />
+          </div>
           <span>
             {props.nome} | {props.cidade}
           </span>
         </MenuItem>
         {/* </Tooltip> */}
-        <div
-          style={{ borderColor: riskLevelColor }}
-          className="flex gap-4 border-l-2 py-2 px-4 border-solid"
-        >
+        <div className="flex gap-4 py-2 px-4">
           {/* <Tooltip title="Atualizar área de risco"> */}
           <IconButton size="small" onClick={() => {}} className="!bg-blue-400">
             <Icon.Edit />
