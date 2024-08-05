@@ -41,7 +41,11 @@ export const FloodRiskAreaUpdateForm = observer((): ReactElement => {
 
     loadingStore.stop();
 
-    if (data) floodRiskAreaStore.setList(data);
+    if (data) {
+      const list = data.sort((a, b) => a.nome.toLowerCase().localeCompare(b.nome.toLowerCase()));
+
+      floodRiskAreaStore.setList(data);
+    }
   }, []);
 
   const handleGoBack = (): void => sideBarStore.setActionType("READ_ALL");

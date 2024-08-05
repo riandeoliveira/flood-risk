@@ -38,8 +38,10 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
     loadingStore.stop();
 
     if (data) {
-      setAllFloodRiskAreas(data);
-      setFilteredFloodRiskAreas(data);
+      const list = data.sort((a, b) => a.nome.toLowerCase().localeCompare(b.nome.toLowerCase()));
+
+      setAllFloodRiskAreas(list);
+      setFilteredFloodRiskAreas(list);
     }
   }, []);
 

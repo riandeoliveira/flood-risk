@@ -3,13 +3,13 @@
 import { Icon } from "@/assets/icons";
 import { findAllFloodRiskAreas } from "@/features/find-all-flood-risk-areas";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
+import { loadingStore } from "@/stores/loading-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, Tooltip } from "@mui/material";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, type ReactElement } from "react";
 import { MapPin } from "./map-pin";
-import { loadingStore } from "@/stores/loading-store";
 
 export const MapArea = observer((): ReactElement => {
   const handleFetchAllFloodRiskAreas = useCallback(async () => {
@@ -19,7 +19,11 @@ export const MapArea = observer((): ReactElement => {
 
     loadingStore.stop();
 
-    if (data) floodRiskAreaStore.setList(data);
+    if (data) {
+      const list = data.sort((a, b) => a.nome.toLowerCase().localeCompare(b.nome.toLowerCase()));
+
+      floodRiskAreaStore.setList(data);
+    }
   }, []);
 
   const { isLoaded } = useJsApiLoader({
