@@ -59,7 +59,9 @@ export const FloodRiskAreaDeletion = observer((): ReactElement => {
   return (
     <div className="animate-fade-in flex flex-col gap-12">
       <div className="flex justify-between">
-        <h2 className="text-2xl text-center font-semibold">Remover Área de Risco</h2>
+        <h2 data-test-id="side-bar-title" className="text-2xl text-center font-semibold">
+          Remover Área de Risco
+        </h2>
         <Tooltip title="Voltar">
           <IconButton onClick={handleGoBack} className="w-8 h-8 rounded-full !bg-[#170C36]">
             <Icon.ArrowBack className="text-white" />
@@ -74,7 +76,7 @@ export const FloodRiskAreaDeletion = observer((): ReactElement => {
         </p>
         <div className="flex justify-between">
           <Button onClick={handleGoBack}>Cancelar</Button>
-          <Button color="error" onClick={handleDeleteFloodRiskArea}>
+          <Button color="error" data-test-id="submit-button" onClick={handleDeleteFloodRiskArea}>
             Confirmar
           </Button>
         </div>

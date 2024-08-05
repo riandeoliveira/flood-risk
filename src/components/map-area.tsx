@@ -32,7 +32,7 @@ export const MapArea = observer((): ReactElement => {
   }, []);
 
   return (
-    <section className="flex-1">
+    <section data-test-id="map-area" className="flex-1">
       {isLoaded ? (
         <>
           <GoogleMap

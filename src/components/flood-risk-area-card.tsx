@@ -49,10 +49,20 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
           <span className="truncate">{_.truncate(cardInfo, { length: 32 })}</span>
         </MenuItem>
         <div className="flex gap-3 p-2 s-600px:hidden">
-          <IconButton size="small" onClick={handleFloodRiskAreaUpdate} className="!bg-blue-500">
+          <IconButton
+            size="small"
+            data-test-id="update-flood-risk-area-button"
+            onClick={handleFloodRiskAreaUpdate}
+            className="!bg-blue-500"
+          >
             <Icon.Edit fontSize="small" className="text-white" />
           </IconButton>
-          <IconButton size="small" onClick={handleFloodRiskAreaDelete} className="!bg-red-500">
+          <IconButton
+            size="small"
+            data-test-id="delete-flood-risk-area-button"
+            onClick={handleFloodRiskAreaDelete}
+            className="!bg-red-500"
+          >
             <Icon.Delete fontSize="small" className="text-white" />
           </IconButton>
         </div>

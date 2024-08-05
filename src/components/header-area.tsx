@@ -8,7 +8,10 @@ import type { ReactElement } from "react";
 
 export const HeaderArea = observer((): ReactElement => {
   return (
-    <header className="items-center bg-[#170C36] flex h-20 justify-between p-4">
+    <header
+      data-test-id="header-area"
+      className="items-center bg-[#170C36] flex h-20 justify-between p-4"
+    >
       <Link
         href="https://github.com/Fernanda-Kipper/hackathon-2024"
         target="_blank"

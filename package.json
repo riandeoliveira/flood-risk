@@ -19,7 +19,8 @@
     "dev": "next dev",
     "format": "prettier --write ./src/**/*.{ts,tsx}",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "test:e2e": "cypress open"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -54,8 +55,10 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "cypress": "^13.13.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.4",
+    "eslint-plugin-cypress": "^3.4.0",
     "postcss": "^8.4.39",
     "prettier": "^3.3.2",
     "tailwindcss": "^3.4.4",

@@ -10,6 +10,7 @@ type SelectProps = {
   value: string | null;
   instance?: FormikProps<any>;
   name: string;
+  dataTestId?: string;
 };
 
 export const Select = ({
@@ -20,12 +21,14 @@ export const Select = ({
   value,
   instance,
   name = "",
+  dataTestId = "",
 }: SelectProps): ReactElement => {
   const isInputTouched = instance?.touched[name];
   const inputErrors = instance?.errors[name];
 
   return (
     <Autocomplete
+      data-test-id={dataTestId}
       disableClearable={disableClearable}
       fullWidth
       size="small"

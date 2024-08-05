@@ -108,7 +108,9 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
   return (
     <div className="animate-fade-in flex flex-col gap-12">
       <div className="flex justify-between">
-        <h2 className="text-2xl text-center font-semibold">Nova Área de Risco</h2>
+        <h2 data-test-id="side-bar-title" className="text-2xl text-center font-semibold">
+          Nova Área de Risco
+        </h2>
         <Tooltip title="Voltar">
           <IconButton onClick={handleGoBack} className="w-8 h-8 rounded-full !bg-[#170C36]">
             <Icon.ArrowBack className="text-white" />
@@ -116,7 +118,13 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
         </Tooltip>
       </div>
       <Form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
-        <Input name="nome" label="Nome:*" placeholder="Nome da área de risco" instance={formik} />
+        <Input
+          name="nome"
+          label="Nome:*"
+          placeholder="Nome da área de risco"
+          instance={formik}
+          inputProps={{ "data-test-id": "nome-input" }}
+        />
         <Input
           name="descricao"
           label="Descrição:*"
@@ -124,6 +132,7 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
           multiline
           rows={2}
           instance={formik}
+          inputProps={{ "data-test-id": "descricao-input" }}
         />
         <div className="flex gap-4">
           <Select
@@ -138,6 +147,7 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
 
               handleFetchBrazilianCities(state?.sigla as string);
             }}
+            dataTestId="estado-input"
             instance={formik}
           />
           {formik.values.estado !== "" && (
@@ -149,6 +159,7 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
               onSelect={(_, cityName) => {
                 formik.setFieldValue("cidade", cityName);
               }}
+              dataTestId="cidade-input"
               instance={formik}
             />
           )}
@@ -160,6 +171,7 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
             label="Latitude:*"
             placeholder="Latitude da área de risco"
             instance={formik}
+            inputProps={{ "data-test-id": "latitude-input" }}
           />
           <Input
             type="number"
@@ -167,6 +179,7 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
             label="Longitude:*"
             placeholder="Longitude da área de risco"
             instance={formik}
+            inputProps={{ "data-test-id": "longitude-input" }}
           />
         </div>
         <Select
@@ -179,9 +192,10 @@ export const FloodRiskAreaCreationForm = observer((): ReactElement => {
 
             formik.setFieldValue("nivelRisco", level?.value);
           }}
+          dataTestId="nivel-risco-input"
           instance={formik}
         />
-        <Button type="submit" className="!mt-4">
+        <Button type="submit" data-test-id="submit-button" className="!mt-4">
           Enviar
         </Button>
       </Form>

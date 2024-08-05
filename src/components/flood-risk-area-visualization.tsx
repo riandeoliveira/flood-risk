@@ -5,7 +5,6 @@ import { floodRiskLevels } from "@/constants/flood-risk-levels";
 import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
 import { findOneFloodRiskArea } from "@/features/find-one-flood-risk-area";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
-import { loadingStore } from "@/stores/loading-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, Tooltip } from "@mui/material";
 import { observer } from "mobx-react-lite";
@@ -43,7 +42,9 @@ export const FloodRiskAreaVisualization = observer((): ReactElement => {
   return (
     <div className="animate-fade-in flex flex-col gap-8">
       <div className="flex justify-between s-600px:flex-col-reverse s-600px:gap-2">
-        <h2 className="text-2xl text-center font-semibold">{floodRiskArea.nome}</h2>
+        <h2 data-test-id="side-bar-title" className="text-2xl text-center font-semibold">
+          {floodRiskArea.nome}
+        </h2>
         <div className="flex gap-2 s-600px:justify-between">
           <Tooltip title="Voltar">
             <IconButton
@@ -55,12 +56,22 @@ export const FloodRiskAreaVisualization = observer((): ReactElement => {
           </Tooltip>
           <div className="flex gap-2">
             <Tooltip title="Atualizar área de risco">
-              <IconButton size="small" onClick={handleFloodRiskAreaUpdate} className="!bg-blue-500">
+              <IconButton
+                size="small"
+                data-test-id="update-flood-risk-area-button"
+                onClick={handleFloodRiskAreaUpdate}
+                className="!bg-blue-500"
+              >
                 <Icon.Edit fontSize="small" className="text-white" />
               </IconButton>
             </Tooltip>
             <Tooltip title="Remover área de risco">
-              <IconButton size="small" onClick={handleFloodRiskAreaDelete} className="!bg-red-500">
+              <IconButton
+                size="small"
+                data-test-id="delete-flood-risk-area-button"
+                onClick={handleFloodRiskAreaDelete}
+                className="!bg-red-500"
+              >
                 <Icon.Delete fontSize="small" className="text-white" />
               </IconButton>
             </Tooltip>

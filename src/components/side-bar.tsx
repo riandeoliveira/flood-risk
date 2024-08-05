@@ -25,6 +25,7 @@ export const SideBar = observer((): ReactElement => {
 
   return (
     <section
+      data-test-id="side-bar"
       style={sectionStyles}
       className="transition-all overflow-y-auto overflow-x-hidden h-[88vh] s-1440px:min-h-[40vh] s-1440px:h-full"
     >

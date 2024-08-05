@@ -6,9 +6,9 @@ import type { ReactElement } from "react";
 
 const HomePage = (): ReactElement => {
   return (
-    <div className="h-screen flex flex-col">
+    <div data-test-id="home-page" className="h-screen flex flex-col">
       <HeaderArea />
-      <main className="flex h-full s-1440px:flex-col">
+      <main data-test-id="main-area" className="flex h-full s-1440px:flex-col">
         <SideBar />
         <MapArea />
       </main>

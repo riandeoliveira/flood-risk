@@ -55,9 +55,12 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
     <div className="animate-fade-in flex flex-col gap-12">
       <div className="flex flex-col gap-8">
         <div className="flex justify-between">
-          <h2 className="text-2xl font-semibold">Áreas de Risco de Alagamentos</h2>
+          <h2 data-test-id="side-bar-title" className="text-2xl font-semibold">
+            Áreas de Risco de Alagamentos
+          </h2>
           <Tooltip title="Adicionar nova área de risco">
             <IconButton
+              data-test-id="create-flood-risk-area-button"
               onClick={() => sideBarStore.setActionType("CREATE")}
               className="w-8 h-8 rounded-full !bg-[#170C36]"
             >
@@ -71,6 +74,7 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
             placeholder="Pesquise uma área pelo nome ou cidade"
             size="small"
             onChange={handleSearchChange}
+            data-test-id="search-input"
             className="w-full"
           />
         </div>
