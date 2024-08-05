@@ -5,7 +5,6 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactElement, ReactNode } from "react";
-import "react-modern-drawer/dist/index.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Providers } from "./providers";
 
