@@ -4,6 +4,7 @@ import { Icon } from "@/assets/icons";
 import { floodRiskLevels } from "@/constants/flood-risk-levels";
 import { type FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
+import { mapStore } from "@/stores/map-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, MenuItem } from "@mui/material";
 import _ from "lodash";
@@ -20,6 +21,8 @@ export const FloodRiskAreaCard = observer((props: FloodRiskAreaCardProps): React
     floodRiskAreaStore.setCurrentId(props.id);
 
     if (sideBarStore.actionType !== "READ_ONE") sideBarStore.setActionType("READ_ONE");
+
+    mapStore.zoomToLocation(parseFloat(props.latitude), parseFloat(props.longitude));
   };
 
   const handleFloodRiskAreaDelete = (): void => {

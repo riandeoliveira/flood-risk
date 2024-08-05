@@ -5,6 +5,7 @@ import type { FindAllFloodRiskAreasResponse } from "@/features/find-all-flood-ri
 import { findAllFloodRiskAreas } from "@/features/find-all-flood-risk-areas";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
 import { loadingStore } from "@/stores/loading-store";
+import { mapStore } from "@/stores/map-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, TextField, Tooltip } from "@mui/material";
 import { observer } from "mobx-react-lite";
@@ -51,6 +52,8 @@ export const FloodRiskAreasViewingList = observer((): ReactElement => {
 
   useEffect(() => {
     floodRiskAreaStore.setCurrentId(0);
+
+    mapStore.resetZoom();
   }, []);
 
   return (

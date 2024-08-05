@@ -2,6 +2,7 @@
 
 import type { FindOneFloodRiskAreaResponse } from "@/features/find-one-flood-risk-area";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
+import { mapStore } from "@/stores/map-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { Marker } from "@react-google-maps/api";
 import { observer } from "mobx-react-lite";
@@ -16,6 +17,8 @@ export const MapPin = observer((props: MapPinProps): ReactElement => {
     floodRiskAreaStore.setCurrentId(props.id);
 
     sideBarStore.setActionType("READ_ONE");
+
+    mapStore.zoomToLocation(pinPosition.lat, pinPosition.lng);
   };
 
   useEffect(() => {
@@ -23,7 +26,7 @@ export const MapPin = observer((props: MapPinProps): ReactElement => {
       lat: parseFloat(props.latitude),
       lng: parseFloat(props.longitude),
     });
-  }, []);
+  }, [props.latitude, props.longitude]);
 
   return (
     <Marker

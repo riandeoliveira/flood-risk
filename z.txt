@@ -4,7 +4,6 @@ import { Icon } from "@/assets/icons";
 import { findAllFloodRiskAreas } from "@/features/find-all-flood-risk-areas";
 import { floodRiskAreaStore } from "@/stores/flood-risk-area-store";
 import { loadingStore } from "@/stores/loading-store";
-import { mapStore } from "@/stores/map-store";
 import { sideBarStore } from "@/stores/side-bar-store";
 import { IconButton, Tooltip } from "@mui/material";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
@@ -25,7 +24,7 @@ export const MapArea = observer((): ReactElement => {
     if (data) {
       const list = data.sort((a, b) => a.nome.toLowerCase().localeCompare(b.nome.toLowerCase()));
 
-      floodRiskAreaStore.setList(list);
+      floodRiskAreaStore.setList(data);
     }
   }, []);
 
@@ -38,10 +37,15 @@ export const MapArea = observer((): ReactElement => {
     handleFetchAllFloodRiskAreas();
   }, []);
 
-  const handleMapLoad = (map: google.maps.Map): void => {
+  const handleMapLoad = (map: google.maps.Map) => {
     mapRef.current = map;
+  };
 
-    mapStore.setRef(mapRef.current);
+  const zoomToLocation = (lat: number, lng: number) => {
+    if (mapRef.current) {
+      mapRef.current.setCenter(new google.maps.LatLng(lat, lng));
+      mapRef.current.setZoom(12); // Ajuste o nível de zoom conforme necessário
+    }
   };
 
   return (
@@ -59,7 +63,7 @@ export const MapArea = observer((): ReactElement => {
             mapContainerClassName="w-full h-full"
           >
             {floodRiskAreaStore.list.map((area) => (
-              <MapPin {...area} key={area.id} />
+              <MapPin {...area} key={area.id} zoomToLocation={zoomToLocation} />
             ))}
           </GoogleMap>
           <Tooltip
