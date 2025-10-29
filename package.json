@@ -1,7 +1,7 @@
 {
   "name": "flood-risk",
   "description": "Aplicação pública destinada a identificar e alertar sobre potenciais áreas de risco de alagamentos por todo o território brasileiro.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "private": true,
   "contributors": [
