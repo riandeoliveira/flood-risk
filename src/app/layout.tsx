@@ -15,10 +15,9 @@ type RootLayoutProps = {
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FloodRisk",
+  title: "Flood Risk",
   description:
     "Aplicação pública destinada a identificar e alertar sobre potenciais áreas de risco de alagamentos por todo o território brasileiro.",
-  keywords: ["brazil", "hackathon", "javascript", "nextjs", "react", "tailwindcss", "typescript"],
 };
 
 const RootLayout = ({ children }: RootLayoutProps): ReactElement => {
